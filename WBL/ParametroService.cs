@@ -8,7 +8,16 @@ using System.Threading.Tasks;
 
 namespace WBL
 {
-    public class ParametroService
+    public interface IParametroService
+    {
+        Task<DBEntity> Create(ParametroEntity entity);
+        Task<DBEntity> Delete(ParametroEntity entity);
+        Task<IEnumerable<ParametroEntity>> Get();
+        Task<ParametroEntity> GetById(ParametroEntity entity);
+        Task<DBEntity> Update(ParametroEntity entity);
+    }
+
+    public class ParametroService : IParametroService
     {
         private readonly IDataAccess sql;
 
@@ -39,7 +48,7 @@ namespace WBL
         {
             try
             {
-                var result = sql.QueryFirstAsync<ParametroEntity>("dbo.ParametroObtener", new { entity.Id_Parametro});
+                var result = sql.QueryFirstAsync<ParametroEntity>("dbo.ParametroObtener", new { entity.Id_Parametro });
                 return await result;
             }
             catch (Exception)
@@ -55,11 +64,12 @@ namespace WBL
             try
             {
                 var result = sql.ExecuteAsync("dbo.ParametroInsertar", new
-                           {entity.Codigo,
-                            entity.Descripcion,
-                            entity.Valor,
-                            entity.Estado
-                            });
+                {
+                    entity.Codigo,
+                    entity.Descripcion,
+                    entity.Valor,
+                    entity.Estado
+                });
                 return await result;
             }
             catch (Exception)
