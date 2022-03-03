@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace BD
 {
-    public class DataAcces : IDataAcces
+    public class DataAccess : IDataAccess
     {
         private readonly IConfiguration config;
 
-        public DataAcces(IConfiguration _Config)
+        public DataAccess(IConfiguration _Config)
         {
             config = _Config;
         }
@@ -204,7 +204,7 @@ namespace BD
                 throw;
             }
         }
-        public async Task<DBEntity> ExcecuteAsync<T>(string sp, object Param = null, int? Timeout = null)
+        public async Task<DBEntity> ExecuteAsync(string sp, object Param = null, int? Timeout = null)
         {
             try
             {
