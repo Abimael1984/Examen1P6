@@ -65,5 +65,6 @@
     <Build Include="dbo\StoreProcedures\ParametroObtener.sql" />
     <Build Include="dbo\StoreProcedures\ParametroInsertar.sql" />
     <Build Include="dbo\StoreProcedures\ParametroActualizar.sql" />
+    <Build Include="dbo\StoreProcedures\ParametroEliminar.sql" />
   </ItemGroup>
 </Project>

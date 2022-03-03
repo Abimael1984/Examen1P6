@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[ParametroInsertar]
-	 @Codigo VARCHAR(250) NULL,
-	 @Descripcion VARCHAR(250) NULL,
-	 @Valor VARCHAR(250) NOT NULL,
-	 @Estado BIT NOT NULL
+	 @Codigo VARCHAR(250) ,
+	 @Descripcion VARCHAR(250) ,
+	 @Valor VARCHAR(250) ,
+	 @Estado BIT 
 
 AS
 BEGIN
@@ -32,7 +32,7 @@ BEGIN
 	BEGIN CATCH
 		SELECT 
 			ERROR_NUMBER() AS CodeError,
-			ERROR_MESSAGE() AS MsgError
+			ERROR_MESSAGE() AS MSGError
 		
 		ROLLBACK TRANSACTION TRASA
 	END CATCH
