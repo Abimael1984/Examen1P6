@@ -11,7 +11,7 @@ namespace WebApp
 
         public static IServiceCollection AddDIContainer(this IServiceCollection services)
         {
-
+            services.AddSingleton
 
             return services;
         }
