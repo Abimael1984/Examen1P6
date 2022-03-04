@@ -19,11 +19,20 @@ namespace WebApp.Pages.Parametro
         }
 
         public IEnumerable<ParametroEntity> GridList { get; set; } = new List<ParametroEntity>();
+
+        public string Mensaje { get; set; } = "";
         public async Task<IActionResult> OnGet()
         {
             try
             {
                 GridList = await parametroService.Get();
+
+                if (TempData.ContainsKey("Msg"))
+                {
+                    Mensaje = TempData["Msg"] as string;
+                }
+
+                TempData.Clear();
 
                 return Page();
             }
@@ -34,13 +43,25 @@ namespace WebApp.Pages.Parametro
             }
         }
 
-        public async Task<IActionResult> OnGetEliminar()
+        public async Task<IActionResult> OnGetEliminar(int id)
         {
             try
             {
-                GridList = await parametroService.Get();
+                var result = await parametroService.Delete(new()
+                {
+                    Id_Parametro = id
+                }
+                    );
 
-                return Page();
+                if (result.CodeError!=0)
+                {
+                    throw new Exception(result.MsgError);
+                }
+                TempData["Msg"] = "El parametro se elimino correctamente";
+
+
+
+                return Redirect( "Grid");
             }
             catch (Exception ex)
             {
