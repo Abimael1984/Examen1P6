@@ -12,7 +12,7 @@
         <div class="card-body">
             <h5 class="card-title"> Parametros </h5>
 
-            <a class="btn btn-secondary" asp-page="Edit"><i class='bx bxs-add-to-queue'></a>
+            <a class="btn btn-secondary" asp-page="Edit"><i class='bx bxs-add-to-queue'></i></a>
 
             <div class="row">
                 <div class="col-12">
@@ -30,19 +30,19 @@
                         <tbody>
                             @foreach (var item in Model.GridList)
                             {
-                            <tr>
-                                <td>@item.Id_Parametro</td>
-                                <td>@item.Codigo</td>
-                                <td>@item.Descripcion</td>
-                                <td>@item.Valor</td>
-                                <td>@item.Estado</td>
-                                <td>
-                                    <a class="btn btn-secondary" asp-page="Edit" asp-route-id="@item.Id_Parametro"><i class='bx bx-edit'></a>
-                                    <button type="button" class="=btn btn-secondary" onclick=""><i class='bx bx-trash'></i></button>
+                                <tr>
+                                    <td>@item.Id_Parametro</td>
+                                    <td>@item.Codigo</td>
+                                    <td>@item.Descripcion</td>
+                                    <td>@item.Valor</td>
+                                    <td>@item.Estado</td>
+                                    <td>
+                                        <a class="btn btn-secondary" asp-page="Edit" asp-route-id="@item.Id_Parametro"><i class='bx bx-edit'> </i></a>
+                                        <button type="button" class="=btn btn-secondary" onclick="Parametro.OnClickEliminar(@item.Id_Parametro)"><i class='bx bx-trash'></i></button>
 
-                                </td>
+                                    </td>
 
-                            </tr>
+                                </tr>
 
                             }
 
@@ -60,10 +60,12 @@
 
 </div>
 
-@section Scripts{ 
+@section Scripts{
+
     <script>
-        var MensajeApp = "@Html.Raw (Model.Mensaje)";
+        var MensajeApp = "@Html.Raw(Model.Mensaje)";
     </script>
-    <script defer src =" ~/App/Parametro/Grid.js"></script>
+
+    <script defer src="~/App/Proveedor/Grid.js"></script>
 
 }
